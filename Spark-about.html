@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprint Timer Demo | Lucas Wang</title>
+    <title>Spark Demo | Lucas Wang</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container demo-page">
-        <!-- Header remains the same -->
-        
+    <div class="container demo-page">        
         <main>
             <a href="../index.html" class="back-link">← Back to Projects</a>
             
@@ -33,24 +31,42 @@
                 <div class="video-container">
                     <h2>Demo Videos</h2>
                     <div class="video-grid">
-                        <!-- Video items remain the same -->
+                        <video width="1000" height="550" autoplay controls>
+                            <source src="assets/videos/Spark-demo1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                        <video width="1000" height="550" autoplay controls>
+                            <source src="assets/videos/Spark-demo2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                        <div class="image-container">
+                            <img src="assets/images/Spark-demo.jpg" alt="Image" width="1000" height="550">
+                        </div>
+
+                        <video width="1000" height="550" autoplay controls>
+                            <source src="assets/videos/Spark-demo2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
                 
                 <div class="section-divider"></div>
                 
                 <div class="technical-details">
-                    <h2>Technical Details</h2>
-                    <p>The Sprint Timer project utilizes several key technologies:</p>
-                    <ul>
-                        <!-- List items remain the same -->
-                    </ul>
-                    <p>The system works by first detecting the starting signal (either visual or auditory), then tracking the athlete throughout the sprint, and finally calculating the elapsed time when the finish line is crossed.</p>
+                    <h2>How To Use</h2>
+                    <p>Many features are yet to be implemented, but here is how it works for now.</p>
+                    <ol>
+                        <li>Set camera up at finish line. Center the screen on the finish line.</li>
+                        <li>Start recording.</li>
+                        <li>Runner/coach/teammate gives audio cue, such as "GO".</li>
+                        <li>Go!</li>
+                    </ol>
+                    <p>The system works by first detecting the auditory cue, or the peak in audio. It then tracks the athlete through the finish line, and calculating the elapsed time from start to end.</p>
                 </div>
             </div>
         </main>
-        
-        <!-- Footer remains the same -->
     </div>
 </body>
 </html>
