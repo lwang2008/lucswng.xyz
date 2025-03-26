@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Demo | Lucas Wang</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container demo-page">        
+        <main>
+            <a href="../index.html" class="back-link">← Back to Projects</a>
+            
+            <div class="intro">
+                <h1>Single Pendulum Simulator (April 2024)</h1>
+                <p>Python, Matplotlib, Scipy, Runge-Kutta</p>
+            </div>
+            
+            <div class="demo-container">
+                <div class="demo-description">
+                    <p>In 10th grade, when I was self studying AP Physics 1, I became intrigued by the motion of double pendulums. After watching a Youtube video [1] by Action Lab, I decided it will be interesting to simulate a double pendulum using Python. I got the inspiration for this project from myphysicslab.com [2], which includes a variety of interesting physics simulations where the user can adjust parameters. These simulations are programmed using TypeScript, and I decided to create the same simulations in Python. However, as I worked on this program, I realized how difficult it was. I decided that I need to simulate a single pendulum first.</p>
+                </div>
+
+                <div class="image-container">
+                    <img src="assets/images/SinglePendulum-about2.jpg" alt="Image" width="800" height="550">
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="demo-description">
+                    <p>According to myphysicslab.com [2], "the heart of a physics simulation is the set of differential equations that describe how the variables evolve over time". This aligned well with my the Differential Equations class I had taken this year. I decided to test different methods for solving these differential equations.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="demo-description">
+                    <p>myphysicslab.com [2] allows the user to choose between a few options for the simulation. 3 options included are Euler's Method, Modified Euler (Heun's Method), and Runge-Kutta (RK4).  </p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="assets/images/SinglePendulum-about5.jpg" alt="Image" width="800" height="550">
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="demo-description">
+                    <p>Through my independent research of additional methods, I came across the Dormand-Prince Method. This was not taught my course's curriculum, and it took time to fully understand it. After watching a Youtube video [3] and learning more about Dormand-Prince online, I decided to implement it. This took a long time due to the large number of coefficients needed and all the equations I had to solve. </p>
+                </div>
+
+                <div class="image-container">
+                    <img src="assets/images/SinglePendulum-about1.jpg" alt="Image" width="800" height="550">
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="demo-description">
+                    <h2>Conclusion</h2>
+                    <p>This project was both fun and educational. I was able to learn a lot about Dormand-Prince and its applications. I was also able to improve my proficiency with the Matplotlib The most satisfying part was comparing the four methods I used: Euler's, Heun's, RK4, and lastly Dormand-Prince. The accuracy of each program increased in that order. I calculated error as the total mechanical energy in each frame compared to the initial total mechanical energy. Only when using very large values for gravity (g) and mass (m) will the accuracy difference between RK4 and Dormand-Prince show. The image below shows how little error Dormand-Prince accumulutes despite large values of mass = 1000kg and gravity = 100m/s^2. </p>
+                </div>
+
+                <div class="image-container">
+                    <img src="assets/images/SinglePendulum-about3.jpg" alt="Image" width="800" height="550">
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="demo-description">
+                    <h2>Improvements</h2>
+                    <p>It will be useful to calculate a percent error and see how that accumulates for each of the 4 simulations. An error-time graph will also be insightful.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="technical-details">
+                    <h2>Sources</h2>
+                    <ol>
+                        <li>https://www.youtube.com/watch?v=4xViPStT5II</li>
+                        <li>https://www.myphysicslab.com/index-en.html</li>
+                        <li>https://www.youtube.com/watch?v=Vs2usBZjUO8</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -333,12 +333,6 @@ footer {
     margin-bottom: 15px;
 }
 
-.technical-details li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--text);
-}
 
 li {
     margin-bottom: 8px;
