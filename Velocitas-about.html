@@ -16,15 +16,25 @@
             
             <div class="intro">
                 <h1>Velocitas (December 2024 - Present) </h1>
-                <p>N/A</p>
+                <p>Currently researching alternatives to model used in Spark</p>
             </div>
             
             <div class="demo-container">
                 <div class="demo-description">
-                    <p>Building on top of Spark, I began trying to figure out which other data from the pose model could be analyzed. However, the inaccuracy of YOLO11's pose model makes it near impossible to implement features such as as a stride-frequency detector. I have tried to train YOLOv8's pose model by annotating images on Roboflow, but the time consuming nature of this process prompted me to delay it. I am currently in the process of learning other models from Tensorflow and OpenPose.</p>
+                    <p>Building on top of Spark, I began trying to figure out which other data from the pose model could be analyzed. However, the inaccuracy of YOLO11's pose model makes it near impossible to implement features such as as a stride-frequency detector. I have tried to train YOLOv8's pose model by annotating images on Roboflow, but the time consuming nature of this process prompted me to delay it until summer. I am currently in the process of learning other models from Tensorflow and OpenPose.</p>
                 </div>
-                
             </div>
+
+            <div class="image-container">
+                <img src="assets/images/velocitas1.jpg" alt="Image" width="800" height="550">
+            </div>
+
+            <div class="demo-container">
+                <div class="demo-description">
+                    <p>Even using the most accurate YOLO11 pose model (YOLO11x-pose) and a video in slow motion, it is difficult to perform meaningful analysis. This graph is the result when left/right foot position is plotted as a function of time. Another limitation of YOLO is that there are only 17 keypoints, meaning a person's foot is represented by a single "point". Sprinter's feet positions are important, and there are better alternatives. For example, OpenPose's 2D real-time multi-person keypoint detection has 15, 18, or 25 keypoints, including 6 foot keypoints [https://github.com/CMU-Perceptual-Computing-Lab/openpose]. </p>
+                </div>
+            </div>
+
         </main>
     </div>
 </body>
