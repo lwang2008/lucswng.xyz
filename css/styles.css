@@ -449,3 +449,81 @@ h2 {
     max-width: 100%; 
     height: auto;    
 }
+
+.repo-link {
+    color: #4a9eff;
+    text-decoration: underline;
+    transition: all 0.2s ease;
+}
+
+.repo-link:hover {
+    color: #7ab8ff;
+    opacity: 1;
+}
+
+.large-project {
+    grid-column: span 3;  /* Makes the box span 3 columns */
+    min-height: 200px;    /* Optional: make it taller */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .large-project {
+        grid-column: span 2;  /* Span 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .large-project {
+        grid-column: span 1;  /* Full width on mobile */
+    }
+}
+
+.future-projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.future-project-item {
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.future-project-item:hover {
+    border-color: var(--text-secondary);
+}
+
+.future-project-item h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.future-project-item p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.underline {
+    text-decoration: underline;
+    color: var(--text);  /* Same color as regular text */
+}
+
+.simple-link {
+    text-decoration: underline;
+    color: var(--text);  /* Same color as regular text */
+    opacity: 1;          /* Prevent opacity change on hover */
+}
+
+.simple-link:hover {
+    opacity: 1;          /* Prevent opacity change on hover */
+}
