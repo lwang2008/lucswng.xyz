@@ -461,24 +461,19 @@ h2 {
     opacity: 1;
 }
 
-.large-project {
-    grid-column: span 3;  /* Makes the box span 3 columns */
-    min-height: 200px;    /* Optional: make it taller */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.medium-project {
+    grid-column: span 2;  /* Makes the box span 2 columns instead of 3 */
 }
 
-/* Adjust for smaller screens */
 @media (max-width: 768px) {
-    .large-project {
-        grid-column: span 2;  /* Span 2 columns on medium screens */
+    .medium-project {
+        grid-column: span 2;
     }
 }
 
 @media (max-width: 480px) {
-    .large-project {
-        grid-column: span 1;  /* Full width on mobile */
+    .medium-project {
+        grid-column: span 1;
     }
 }
 
