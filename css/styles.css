@@ -461,18 +461,23 @@ h2 {
     opacity: 1;
 }
 
-.medium-project {
-    grid-column: span 2;  /* Makes the box span 2 columns instead of 3 */
+.large-project {
+    grid-column: span 2;  /* Changed from span 3 to span 2 */
+    min-height: 200px;    /* Optional: make it taller */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* Adjust for smaller screens */
 @media (max-width: 768px) {
-    .medium-project {
+    .large-project {
         grid-column: span 2;
     }
 }
 
 @media (max-width: 480px) {
-    .medium-project {
+    .large-project {
         grid-column: span 1;
     }
 }
