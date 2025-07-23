@@ -21,8 +21,10 @@ export default async function handler(req, res) {
       success_url: 'https://test.lucswng.xyz/success.html',
       cancel_url: 'https://test.lucswng.xyz/cancel.html',
     });
+    console.log('Stripe session created:', session);
     res.status(200).json({ id: session.id });
   } catch (err) {
+    console.error('Stripe error:', err);
     res.status(500).json({ error: err.message });
   }
 } 
