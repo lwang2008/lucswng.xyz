@@ -106,43 +106,64 @@
       <button id="close-modal">&times;</button>
       <div id="sign-in"></div>
     </div>
-    <script type="module">
-      import { Clerk } from '@clerk/clerk-js';
-      const clerk = new Clerk(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
+    <script>
+      const publishableKey = 'pk_test_51RnwkJIcPvYDbUUGRCKiaJbZmLFQ9qt91QIFISRYneSEJIs50YwnPuiiQJb2WZ3qxtdOdPujUaw8EAwLnZiTVmpX00fQSbmIKp';
       const loginBtn = document.getElementById('login-btn');
       const signInModal = document.getElementById('sign-in-modal');
       const closeModal = document.getElementById('close-modal');
       const payLink = document.getElementById('pay-link');
+      let clerkLoaded = false;
 
       function showModal() {
         signInModal.style.display = 'flex';
+        if (!clerkLoaded) {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+          script.async = true;
+          script.onload = () => {
+            window.Clerk.load({
+              publishableKey,
+              signInMount: '#sign-in',
+              afterSignInUrl: '/payment.html',
+              afterSignUpUrl: '/payment.html',
+              signInOptions: { redirectUrl: '/payment.html' }
+            });
+            clerkLoaded = true;
+          };
+          document.head.appendChild(script);
+        } else {
+          window.Clerk.load({
+            publishableKey,
+            signInMount: '#sign-in',
+            afterSignInUrl: '/payment.html',
+            afterSignUpUrl: '/payment.html',
+            signInOptions: { redirectUrl: '/payment.html' }
+          });
+        }
       }
       function hideModal() {
         signInModal.style.display = 'none';
       }
-
       loginBtn.addEventListener('click', showModal);
       closeModal.addEventListener('click', hideModal);
       signInModal.addEventListener('click', (e) => {
         if (e.target === signInModal) hideModal();
       });
-
-      clerk.load().then(() => {
-        if (clerk.user) {
-          loginBtn.style.display = 'none';
-          payLink.style.display = 'inline-block';
-        } else {
-          loginBtn.style.display = 'inline-block';
-          payLink.style.display = 'none';
-        }
-        clerk.mountSignIn(document.getElementById('sign-in'));
-        clerk.addListener('user', (user) => {
-          if (user) {
-            hideModal();
+      // Optionally, check Clerk session and show/hide pay link
+      window.addEventListener('DOMContentLoaded', () => {
+        const checkSession = () => {
+          if (window.Clerk && window.Clerk.session) {
             loginBtn.style.display = 'none';
             payLink.style.display = 'inline-block';
+          } else {
+            loginBtn.style.display = 'inline-block';
+            payLink.style.display = 'none';
           }
-        });
+        };
+        if (window.Clerk) {
+          window.Clerk.addListener('session', checkSession);
+          checkSession();
+        }
       });
     </script>
   </body>
