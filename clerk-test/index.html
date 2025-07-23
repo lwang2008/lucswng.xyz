@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Take Back Control of Your Time</title>
+    
+    <!-- Set Clerk publishable key globally BEFORE loading Clerk script -->
+    <script>
+      window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
+    </script>
+    
+    <!-- Load Clerk CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+    
     <style>
       body {
         background: #000;
@@ -107,12 +116,7 @@
       <div id="sign-in"></div>
     </div>
     
-    <!-- Load Clerk CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
     <script>
-      // Set Clerk publishable key globally
-      window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
-      
       const loginBtn = document.getElementById('login-btn');
       const signInModal = document.getElementById('sign-in-modal');
       const closeModal = document.getElementById('close-modal');
@@ -143,8 +147,7 @@
         signInModal.style.display = 'flex';
         ensureClerkLoaded((clerk) => {
           clerk.mountSignIn(document.getElementById('sign-in'), {
-            afterSignInUrl: '/payment.html',
-            afterSignUpUrl: '/payment.html'
+            fallbackRedirectUrl: '/payment.html'
           });
         });
       }

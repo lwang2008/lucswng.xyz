@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login / Register</title>
+    
+    <!-- Set Clerk publishable key globally BEFORE loading Clerk script -->
+    <script>
+      window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
+    </script>
+    
+    <!-- Load Clerk CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+    
     <style>
       body {
         background: #000;
@@ -31,12 +40,7 @@
   <body>
     <div id="sign-in"></div>
     
-    <!-- Load Clerk CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
     <script>
-      // Set Clerk publishable key globally
-      window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
-      
       function getRedirectUrl() {
         const params = new URLSearchParams(window.location.search);
         return params.get('redirect_url') || '/payment.html';
@@ -71,8 +75,7 @@
         }
 
         clerk.mountSignIn(document.getElementById('sign-in'), {
-          afterSignInUrl: getRedirectUrl(),
-          afterSignUpUrl: getRedirectUrl()
+          fallbackRedirectUrl: getRedirectUrl()
         });
 
         clerk.addListener('user', (user) => {
