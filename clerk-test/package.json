@@ -12,6 +12,7 @@
     "vite": "^7.0.4"
   },
   "dependencies": {
-    "@clerk/clerk-js": "^5.74.1"
+    "@clerk/clerk-js": "^5.74.1",
+    "stripe": "^18.3.0"
   }
 }
