@@ -30,6 +30,57 @@
   </head>
   <body>
     <div id="sign-in"></div>
-    <script type="module" src="/login.js"></script>
+    
+    <!-- Load Clerk CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+    <script>
+      // Set Clerk publishable key globally
+      window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
+      
+      function getRedirectUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('redirect_url') || '/payment.html';
+      }
+
+      let clerkLoaded = false;
+      let clerkInstance = null;
+
+      function ensureClerkLoaded(cb) {
+        if (clerkLoaded && clerkInstance) {
+          cb(clerkInstance);
+          return;
+        }
+        
+        const check = setInterval(() => {
+          if (window.Clerk && typeof window.Clerk.load === 'function') {
+            clearInterval(check);
+            window.Clerk.load().then((clerk) => {
+              clerkLoaded = true;
+              clerkInstance = clerk;
+              cb(clerkInstance);
+            });
+          }
+        }, 50);
+      }
+
+      // Initialize Clerk and mount sign-in
+      ensureClerkLoaded((clerk) => {
+        if (clerk.user) {
+          window.location.href = getRedirectUrl();
+          return;
+        }
+
+        clerk.mountSignIn(document.getElementById('sign-in'), {
+          afterSignInUrl: getRedirectUrl(),
+          afterSignUpUrl: getRedirectUrl()
+        });
+
+        clerk.addListener('user', (user) => {
+          if (user) {
+            window.location.href = getRedirectUrl();
+          }
+        });
+      });
+    </script>
   </body>
 </html> 
