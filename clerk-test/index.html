@@ -144,6 +144,14 @@
       function showModal() {
         signInModal.style.display = 'flex';
         ensureClerkLoaded(() => {
+          // Check if user is already signed in
+          if (window.Clerk.user) {
+            console.log('User already signed in, redirecting to payment');
+            window.location.href = '/payment.html';
+            return;
+          }
+          
+          // Mount sign-in form
           window.Clerk.mountSignIn(document.getElementById('sign-in'), {
             fallbackRedirectUrl: '/payment.html'
           });
@@ -155,11 +163,25 @@
         document.getElementById('sign-in').innerHTML = '';
       }
 
+      // Add a function to clear Clerk session for testing
+      function clearClerkSession() {
+        if (window.Clerk && window.Clerk.signOut) {
+          window.Clerk.signOut();
+        }
+        // Also clear any stored tokens
+        localStorage.removeItem('clerk-db');
+        sessionStorage.removeItem('clerk-db');
+        console.log('Clerk session cleared');
+      }
+
       loginBtn.addEventListener('click', showModal);
       closeModal.addEventListener('click', hideModal);
       signInModal.addEventListener('click', (e) => {
         if (e.target === signInModal) hideModal();
       });
+
+      // Add clear session function to window for testing
+      window.clearClerkSession = clearClerkSession;
     </script>
   </body>
 </html>
