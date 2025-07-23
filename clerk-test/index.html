@@ -106,60 +106,58 @@
       <button id="close-modal">&times;</button>
       <div id="sign-in"></div>
     </div>
+    
+    <!-- Load Clerk CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
     <script>
-      // Set Clerk publishable key globally for Clerk CDN v5
+      // Set Clerk publishable key globally
       window.__clerk_publishable_key = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
+      
       const loginBtn = document.getElementById('login-btn');
       const signInModal = document.getElementById('sign-in-modal');
       const closeModal = document.getElementById('close-modal');
       const payLink = document.getElementById('pay-link');
+      
       let clerkLoaded = false;
+      let clerkInstance = null;
+
+      function ensureClerkLoaded(cb) {
+        if (clerkLoaded && clerkInstance) {
+          cb(clerkInstance);
+          return;
+        }
+        
+        const check = setInterval(() => {
+          if (window.Clerk && typeof window.Clerk.load === 'function') {
+            clearInterval(check);
+            window.Clerk.load().then((clerk) => {
+              clerkLoaded = true;
+              clerkInstance = clerk;
+              cb(clerkInstance);
+            });
+          }
+        }, 50);
+      }
 
       function showModal() {
         signInModal.style.display = 'flex';
-        if (!clerkLoaded) {
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
-          script.async = true;
-          script.onload = () => {
-            if (window.Clerk && typeof window.Clerk.load === 'function') {
-              window.Clerk.load({
-                signInMount: '#sign-in',
-                fallbackRedirectUrl: '/payment.html',
-                signInOptions: { redirectUrl: '/payment.html' }
-              });
-              clerkLoaded = true;
-            } else {
-              console.error('Clerk failed to load or is not available.');
-            }
-          };
-          script.onerror = () => {
-            console.error('Failed to load Clerk script from CDN.');
-          };
-          document.head.appendChild(script);
-        } else {
-          if (window.Clerk && typeof window.Clerk.load === 'function') {
-            window.Clerk.load({
-              signInMount: '#sign-in',
-              fallbackRedirectUrl: '/payment.html',
-              signInOptions: { redirectUrl: '/payment.html' }
-            });
-          } else {
-            console.error('Clerk is not available on repeat modal open.');
-          }
-        }
+        ensureClerkLoaded((clerk) => {
+          clerk.mountSignIn(document.getElementById('sign-in'), {
+            afterSignInUrl: '/payment.html',
+            afterSignUpUrl: '/payment.html'
+          });
+        });
       }
+
       function hideModal() {
         signInModal.style.display = 'none';
+        document.getElementById('sign-in').innerHTML = '';
       }
+
       loginBtn.addEventListener('click', showModal);
       closeModal.addEventListener('click', hideModal);
       signInModal.addEventListener('click', (e) => {
         if (e.target === signInModal) hideModal();
-      });
-      // Optionally, check Clerk session and show/hide pay link
-      window.addEventListener('DOMContentLoaded', () => {
-        // This part may need to be updated for Clerk v5 CDN, but leaving as is for now
       });
     </script>
   </body>
