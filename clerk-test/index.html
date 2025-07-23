@@ -3,10 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clerk Test</title>
+    <title>Take Back Control of Your Time</title>
+    <style>
+      body {
+        background: #000;
+        color: #fff;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      .continue-btn {
+        font-size: 1.5rem;
+        padding: 1rem 2.5rem;
+        background: #fff;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        transition: background 0.2s, color 0.2s;
+      }
+      .continue-btn:hover {
+        background: #222;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div class="container">
+      <h1>Take Back Control of Your Time</h1>
+      <button class="continue-btn" onclick="window.location.href='login.html?redirect_url=/payment.html'">Continue</button>
+    </div>
   </body>
 </html>
