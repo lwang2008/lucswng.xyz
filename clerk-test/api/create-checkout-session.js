@@ -17,7 +17,7 @@ export default async function handler(req, res) {
           quantity: 1,
         },
       ],
-      mode: 'payment',
+      mode: 'subscription', // switched from 'payment' to 'subscription'
       success_url: 'https://test.lucswng.xyz/success.html',
       cancel_url: 'https://test.lucswng.xyz/cancel.html',
     });
