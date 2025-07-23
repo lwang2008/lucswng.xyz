@@ -47,38 +47,36 @@
       }
 
       let clerkLoaded = false;
-      let clerkInstance = null;
 
       function ensureClerkLoaded(cb) {
-        if (clerkLoaded && clerkInstance) {
-          cb(clerkInstance);
+        if (clerkLoaded) {
+          cb();
           return;
         }
         
         const check = setInterval(() => {
           if (window.Clerk && typeof window.Clerk.load === 'function') {
             clearInterval(check);
-            window.Clerk.load().then((clerk) => {
+            window.Clerk.load().then(() => {
               clerkLoaded = true;
-              clerkInstance = clerk;
-              cb(clerkInstance);
+              cb();
             });
           }
         }, 50);
       }
 
       // Initialize Clerk and mount sign-in
-      ensureClerkLoaded((clerk) => {
-        if (clerk.user) {
+      ensureClerkLoaded(() => {
+        if (window.Clerk.user) {
           window.location.href = getRedirectUrl();
           return;
         }
 
-        clerk.mountSignIn(document.getElementById('sign-in'), {
+        window.Clerk.mountSignIn(document.getElementById('sign-in'), {
           fallbackRedirectUrl: getRedirectUrl()
         });
 
-        clerk.addListener('user', (user) => {
+        window.Clerk.addListener('user', (user) => {
           if (user) {
             window.location.href = getRedirectUrl();
           }

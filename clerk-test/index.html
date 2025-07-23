@@ -123,21 +123,19 @@
       const payLink = document.getElementById('pay-link');
       
       let clerkLoaded = false;
-      let clerkInstance = null;
 
       function ensureClerkLoaded(cb) {
-        if (clerkLoaded && clerkInstance) {
-          cb(clerkInstance);
+        if (clerkLoaded) {
+          cb();
           return;
         }
         
         const check = setInterval(() => {
           if (window.Clerk && typeof window.Clerk.load === 'function') {
             clearInterval(check);
-            window.Clerk.load().then((clerk) => {
+            window.Clerk.load().then(() => {
               clerkLoaded = true;
-              clerkInstance = clerk;
-              cb(clerkInstance);
+              cb();
             });
           }
         }, 50);
@@ -145,8 +143,8 @@
 
       function showModal() {
         signInModal.style.display = 'flex';
-        ensureClerkLoaded((clerk) => {
-          clerk.mountSignIn(document.getElementById('sign-in'), {
+        ensureClerkLoaded(() => {
+          window.Clerk.mountSignIn(document.getElementById('sign-in'), {
             fallbackRedirectUrl: '/payment.html'
           });
         });
