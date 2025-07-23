@@ -107,12 +107,13 @@
       <div id="sign-in"></div>
     </div>
     <script>
-      const publishableKey = 'pk_test_51RnwkJIcPvYDbUUGRCKiaJbZmLFQ9qt91QIFISRYneSEJIs50YwnPuiiQJb2WZ3qxtdOdPujUaw8EAwLnZiTVmpX00fQSbmIKp';
+      const publishableKey = 'pk_test_ZWFzeS1vY2Vsb3QtOTguY2xlcmsuYWNjb3VudHMuZGV2JA';
       const loginBtn = document.getElementById('login-btn');
       const signInModal = document.getElementById('sign-in-modal');
       const closeModal = document.getElementById('close-modal');
       const payLink = document.getElementById('pay-link');
       let clerkLoaded = false;
+      let clerkInstance = null;
 
       function showModal() {
         signInModal.style.display = 'flex';
@@ -121,24 +122,17 @@
           script.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
           script.async = true;
           script.onload = () => {
-            window.Clerk.load({
-              publishableKey,
-              signInMount: '#sign-in',
-              afterSignInUrl: '/payment.html',
-              afterSignUpUrl: '/payment.html',
-              signInOptions: { redirectUrl: '/payment.html' }
+            clerkInstance = new window.Clerk(publishableKey);
+            clerkInstance.load().then(() => {
+              clerkInstance.mountSignIn(document.getElementById('sign-in'));
             });
             clerkLoaded = true;
           };
           document.head.appendChild(script);
         } else {
-          window.Clerk.load({
-            publishableKey,
-            signInMount: '#sign-in',
-            afterSignInUrl: '/payment.html',
-            afterSignUpUrl: '/payment.html',
-            signInOptions: { redirectUrl: '/payment.html' }
-          });
+          if (clerkInstance) {
+            clerkInstance.mountSignIn(document.getElementById('sign-in'));
+          }
         }
       }
       function hideModal() {
@@ -152,7 +146,7 @@
       // Optionally, check Clerk session and show/hide pay link
       window.addEventListener('DOMContentLoaded', () => {
         const checkSession = () => {
-          if (window.Clerk && window.Clerk.session) {
+          if (clerkInstance && clerkInstance.session) {
             loginBtn.style.display = 'none';
             payLink.style.display = 'inline-block';
           } else {
@@ -160,8 +154,8 @@
             payLink.style.display = 'none';
           }
         };
-        if (window.Clerk) {
-          window.Clerk.addListener('session', checkSession);
+        if (clerkInstance) {
+          clerkInstance.addListener('session', checkSession);
           checkSession();
         }
       });
