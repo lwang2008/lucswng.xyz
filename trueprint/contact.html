@@ -4,38 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trueprint | Contact</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">Trueprint</div>
-            <nav>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="home.html" class="nav-logo">Trueprint</a>
+            <div class="nav-links">
                 <a href="home.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="products.html">Products</a>
                 <a href="contact.html" class="active">Contact</a>
-            </nav>
-        </header>
-
-        <main>
-            <a href="../index.html" class="back-link">Back to Portfolio</a>
-
-            <div class="intro">
-                <h1>Contact</h1>
-                <p>Get in touch with Trueprint</p>
             </div>
-        </main>
+        </div>
+    </nav>
 
-        <footer>
-            <div class="social">
+    <div class="page">
+        <div class="page-content">
+            <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
+
+            <div class="hero">
+                <h1>Get in touch.</h1>
+                <p>Have a question, idea, or want to work together? Reach out and we'll get back to you.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Details</h3>
+                        <p>We'd love to hear from you. Whether you have a question about our products, need support, or just want to say hello.</p>
+                        <div class="contact-detail">
+                            <span>Email</span>
+                            lucaswang8866@gmail.com
+                        </div>
+                        <div class="contact-detail">
+                            <span>Location</span>
+                            United States
+                        </div>
+                    </div>
+
+                    <form class="contact-form">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea placeholder="Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-links">
                 <a href="https://github.com/lwang2008">GitHub</a>
                 <a href="https://www.linkedin.com/in/lucas-wang-123a11231/">LinkedIn</a>
             </div>
-            <div class="copyright">&copy; 2025</div>
+            <div class="footer-copy">&copy; 2025 Trueprint</div>
         </footer>
     </div>
 </body>
