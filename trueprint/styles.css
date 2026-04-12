@@ -355,6 +355,18 @@ a:hover {
     flex-shrink: 0;
 }
 
+.team-member--image-left {
+    flex-direction: row-reverse;
+}
+
+.team-member--image-left .team-member-content {
+    text-align: right;
+}
+
+.team-member--image-left .team-bio {
+    margin-left: auto;
+}
+
 @media (max-width: 768px) {
     .team-member--with-image {
         flex-direction: column;
@@ -377,6 +389,59 @@ a:hover {
     font-size: 15px;
     color: var(--text-secondary);
     line-height: 1.8;
+}
+
+/* ── Product List ── */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.product {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.product:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.product-level {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.product-name {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.product-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.product-desc:last-of-type {
+    margin-bottom: 0;
+}
+
+.product-disclaimer {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-style: italic;
 }
 
 /* ── Feature List ── */
