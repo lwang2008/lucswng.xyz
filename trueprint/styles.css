@@ -558,6 +558,35 @@ a:hover {
     line-height: 1.7;
 }
 
+/* ── Social Media ── */
+.social-media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.social-media-item {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.social-media-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+    .social-media-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 /* ── Contact Form ── */
 .contact-grid {
     display: grid;
@@ -639,6 +668,94 @@ a:hover {
 
 .contact-form button:hover {
     opacity: 0.8;
+}
+
+/* ── Manifesto ── */
+.manifesto-box {
+    padding: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.manifesto-intro {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 48px;
+}
+
+.manifesto-principles {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.principle {
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.principle:not(:last-child) {
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+}
+
+.principle-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+.principle-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .manifesto-box {
+        padding: 32px;
+    }
+}
+
+/* ── Testimonials ── */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.testimonial {
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.testimonial-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 }
 
 /* ── Leaderboard ── */
