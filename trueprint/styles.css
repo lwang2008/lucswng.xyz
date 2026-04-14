@@ -587,6 +587,35 @@ a:hover {
     }
 }
 
+/* ── Promotions ── */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.promotion-item {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.promotion-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+    .promotions-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 /* ── Contact Form ── */
 .contact-grid {
     display: grid;
